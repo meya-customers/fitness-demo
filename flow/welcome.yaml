@@ -1,0 +1,6 @@
+triggers:
+  - keyword: welcome
+
+steps:
+  - type: component.welcome
+    language: en

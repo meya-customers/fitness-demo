@@ -1,0 +1,9 @@
+.direnv
+.idea/*
+.meya
+.pytest_cache
+__pycache__
+node_modules
+venv
+vault.secret*.yaml
+scratch/

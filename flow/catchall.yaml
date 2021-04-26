@@ -1,0 +1,5 @@
+triggers:
+  - catchall
+
+steps:
+  - say: Sorry, I don't understand.
