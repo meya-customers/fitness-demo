@@ -1,0 +1,5 @@
+triggers:
+  - keyword: start strava
+
+steps:
+  - say: Hi, Strava user!

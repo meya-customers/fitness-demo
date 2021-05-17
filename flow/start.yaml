@@ -1,8 +1,13 @@
 triggers:
   - type: page_open
-    when: (@ not thread.open_page )
+  - keyword: start
 
 steps:
+  - value: (@ flow.context.demo )
+    match:
+      strava:
+        flow: flow.strava.start
+        transfer: true
+    default: next
+
   - say: Hey, welcome!
-  - thread_set:
-      open_page: true
