@@ -1,0 +1,13 @@
+steps:
+  - type: meya.zendesk.support.component.user.create_or_update
+    integration: integration.zendesk.support
+    link: true
+    name: (@ user.context.name )
+    email: (@ user.context.email )
+  - type: meya.zendesk.support.component.ticket.create
+    integration: integration.zendesk.support
+    link: true
+    requester_id: (@ flow.result.id )
+    subject: This is a test subject
+    tags: [meya_sdk]
+  - say: 'Ticket #(@ flow.result.id ) created. An agent will be here shortly...'

@@ -1,0 +1,9 @@
+triggers:
+  - keyword: escalate
+
+steps:
+  - if: (@ user.context.isPaid | default(false) )
+    then:
+      flow: flow.strava.support.chat.session.start
+    else:
+      flow: flow.strava.support.ticket.create
