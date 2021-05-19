@@ -1,0 +1,33 @@
+steps:
+  - say: It's easy to set up automatic syncing with Zwift. Start by going to your Zwift connection settings page.
+    quick_replies:
+      - text: Open my Zwift connection settings
+        url: https://www.zwift.com/settings/connections
+      - text: I have it open
+        action: next
+      - text: Back
+        action:
+          jump: end
+
+  - say: Excellent. Just click the **Connect** button underneath **Strava** and follow the prompts.
+    quick_replies:
+      - text: I did it!
+        action:
+          jump: end
+      - text: I'm stuck
+        action: next
+
+  - (escalate)
+  - say: Do you want to contact our support team?
+    quick_replies:
+      - text: Yes
+        action:
+          flow: flow.strava.support.escalate
+      - text: No
+        action: next
+
+  - (end)
+  - flow: flow.strava.start
+    transfer: true
+    data:
+      message: (@ config.followup_msg )
