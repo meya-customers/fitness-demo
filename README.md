@@ -1,10 +1,15 @@
 ![Meya build](https://github.com/meya-ai/grid-template-hello-world/workflows/Meya%20build/badge.svg)
 
-# hello-world
+# Fitness demo
 
-Basic template BFML and Python code that runs on Meya.
+A demo app that includes integrations with Zendesk Help Center, Zendesk Support, Zendesk Chat, and Meya's Orb Live Chat.
+
+The bot helps users connect devices to their fitness apps, and collect information before escalating to a human agent. It can also customize the support experience for users depending on attributes like whether they are a free vs paid user.
+      
+[Watch demo](https://www.loom.com/share/f632ce7b8f50403e92cf2c82bcbd61e8)
 
 ## Setup
+[Quick start guide](https://docs.meya.ai/docs/fitness-quick-start-guide)
 
 ```shell script
 brew install python@3 libgit2
@@ -23,6 +28,12 @@ meya auth add --auth-token $MEYA_AUTH_TOKEN
 # connect to existing app
 meya connect --app-id $MEYA_APP_ID
 ```
+
+### Integration guides
+* [Zendesk Chat](https://docs.meya.ai/docs/how-to-set-up-a-zendesk-chat-integration)
+* [Zendesk Support](https://docs.meya.ai/docs/how-to-set-up-a-zendesk-support-integration)
+* [Zendesk Help Center](https://docs.meya.ai/docs/zendesk-help-center)
+* [Orb](https://docs.meya.ai/docs/how-to-set-up-an-orb-integration)
 
 ## Workflow
 ```shell script 
