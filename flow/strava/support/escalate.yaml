@@ -2,7 +2,19 @@ triggers:
   - keyword: escalate
 
 steps:
-  - if: (@ user.context.isPaid | default(false) )
+  - type: component.strava.auth
+    user_id: (@ user.context.userId)
+    url: (@ vault.strava.api.url )
+    api_token: (@ vault.strava.api.token )
+  - if: (@ flow.result )
+    then:
+      user_set:
+        name: (@ flow.name )
+        email: (@ flow.email )
+        is_paid: (@ flow.is_paid )
+    else: end
+
+  - if: (@ user.is_paid )
     then:
       flow: flow.strava.support.chat.session.start
     else:

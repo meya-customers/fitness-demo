@@ -2,8 +2,8 @@ steps:
   - type: meya.zendesk.support.component.user.create_or_update
     integration: integration.zendesk.support
     link: true
-    name: (@ user.context.name )
-    email: (@ user.context.email )
+    name: (@ user.name )
+    email: (@ user.email )
   - type: meya.zendesk.support.component.ticket.create
     integration: integration.zendesk.support
     link: true

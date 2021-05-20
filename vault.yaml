@@ -3,3 +3,5 @@ zendesk.support.bot_agent_email: xxx
 zendesk.support.bot_agent_api_token: xxx
 zendesk.support.target_password: xxx
 zendesk.chat.account_key: xxx
+strava.api.url: xxx
+strava.api.token: xxx
