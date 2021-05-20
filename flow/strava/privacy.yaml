@@ -7,8 +7,6 @@ steps:
   - delay: 1
   - say: I can recommend privacy settings that will work best for you based on how
       you want to use Strava.
-  - delay: 3
-  - say: (Don't worry, I won't change any of your settings for you 😊)
     quick_replies:
       - text: Continue
         action: next
@@ -105,14 +103,17 @@ steps:
               - cell: Privacy Zones
                 value: (@ flow.zones )
     ask: 'Based on your preferences, here are the privacy settings I recommend:'
+  - delay: 2
+  - say: Would you like me to update your privacy settings for you?
     quick_replies:
-      - text: Open my privacy settings
-        url: https://www.strava.com/settings/privacy
-      - text: Privacy articles
-        action: next
-      - text: Done
+      - text: Yes, update my privacy settings
         action:
           jump: end
+      - text: No, I'll do it later
+        action:
+          jump: end
+      - text: Read more about privacy
+        action: next
 
   - type: meya.zendesk.help_center.component.search
     integration: integration.zendesk.help_center
@@ -126,4 +127,4 @@ steps:
   - end
 
   - (end)
-  - say: Okay
+  - say: Okay!
