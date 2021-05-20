@@ -3,7 +3,7 @@ triggers:
 
 steps:
   - type: component.strava.auth
-    user_id: (@ user.context.userId)
+    user_id: (@ user.user_id )
     url: (@ vault.strava.api.url )
     api_token: (@ vault.strava.api.token )
   - if: (@ flow.result )

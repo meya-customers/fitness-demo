@@ -8,8 +8,8 @@ from meya.text.event.say import SayEvent
 from typing import List
 
 USER_DB = [
-    dict(user_id=1, name="Roger", email="roger@example.com", is_paid=True),
-    dict(user_id=2, name="Susan", email="susan@example.com", is_paid=False),
+    dict(user_id="1", name="Roger", email="roger@example.com", is_paid=True),
+    dict(user_id="2", name="Susan", email="susan@example.com", is_paid=False),
 ]
 
 
@@ -17,7 +17,7 @@ USER_DB = [
 class AuthenticateUserComponent(Component):
     url: str = element_field()
     api_token: str = element_field()
-    user_id: int = element_field()
+    user_id: str = element_field()
 
     @dataclass
     class UserData:
