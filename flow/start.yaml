@@ -3,10 +3,6 @@ triggers:
   - keyword: start
 
 steps:
-  - type: meya.user.component.try_reverse_lookup
-    integration: integration.orb
-  - user_set:
-      user_id: (@ flow.result )
   - value: (@ flow.context.demo )
     match:
       strava:

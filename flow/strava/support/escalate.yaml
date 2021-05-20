@@ -2,8 +2,10 @@ triggers:
   - keyword: escalate
 
 steps:
+  - type: meya.user.component.try_reverse_lookup
+    integration: integration.orb
   - type: component.strava.auth
-    user_id: (@ user.user_id )
+    user_id: (@ flow.result )
     url: (@ vault.strava.api.url )
     api_token: (@ vault.strava.api.token )
   - if: (@ flow.result )
