@@ -1,4 +1,4 @@
-![Meya build](https://github.com/meya-customers/fitness-demo/workflows/Meya%20build/badge.svg)
+[![Meya build](https://github.com/meya-customers/fitness-demo/actions/workflows/meya.check-test.yaml/badge.svg)](https://github.com/meya-customers/fitness-demo/actions/workflows/meya.check-test.yaml)
 
 # Fitness demo
 
