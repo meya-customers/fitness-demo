@@ -1,4 +1,4 @@
-![Meya build](https://github.com/meya-ai/grid-template-hello-world/workflows/Meya%20build/badge.svg)
+![Meya build](https://github.com/meya-customers/fitness-demo/workflows/Meya%20build/badge.svg)
 
 # Fitness demo
 
