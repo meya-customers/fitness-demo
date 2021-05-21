@@ -1,0 +1,7 @@
+steps:
+  - open_chat
+  - say: Thanks! An agent will be with you shortly.
+  - type: meya.zendesk.chat.component.session.start
+    integration: integration.zendesk.chat
+    visitor_name: (@ user.name )
+    visitor_email: (@ user.email )

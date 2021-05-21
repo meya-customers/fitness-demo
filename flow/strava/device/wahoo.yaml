@@ -1,0 +1,50 @@
+steps:
+  - url: https://ca.wahoofitness.com/media/catalog/product/e/l/elemnt-roam-gps-bike-computer-1.jpg?optimize=medium&fit=bounds&height=615&width=615&canvas=615:615
+    alt: Wahoo ELEMNT
+  - say: Connecting your Wahoo ELEMNT to Strava doesn't take long. Start by going
+      to your **Profile** page, then tap **Connected Apps**.
+    quick_replies:
+      - text: I have it open
+        action: next
+      - text: Back
+        action:
+          jump: end
+
+  - say: Excellent. Click the **Strava** button and log in to authorize the connection.
+    quick_replies:
+      - text: I did it!
+        action:
+          jump: end
+      - text: I'm stuck
+        action: next
+
+  - type: meya.zendesk.help_center.component.search
+    integration: integration.zendesk.help_center
+    query: wahoo
+    category: 1500001581521
+    section: 1500002171382
+  - type: meya.zendesk.help_center.component.display
+    search_response: (@ flow.result )
+  - tiles: (@ flow.result)
+    button_style: text
+    ask: Did any of these articles help?
+    quick_replies:
+      - text: Yes
+        action:
+          jump: end
+      - text: No
+        action: next
+
+  - say: Do you want to contact our support team?
+    quick_replies:
+      - text: Yes
+        action:
+          flow: flow.strava.support.escalate
+      - text: No
+        action: next
+
+  - (end)
+  - flow: flow.strava.start
+    transfer: true
+    data:
+      message: (@ config.followup_msg )

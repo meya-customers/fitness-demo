@@ -1,0 +1,130 @@
+triggers:
+  - button_id: _privacy_cta
+
+steps:
+  - open_chat
+  - say: Hi! Strava gives you lots of control over your data.
+  - delay: 1
+  - say: I can recommend privacy settings that will work best for you based on how
+      you want to use Strava.
+    quick_replies:
+      - text: Continue
+        action: next
+      - text: Nevermind
+        action:
+          jump: end
+
+  - say: First, let's determine your baseline privacy settings. Then we'll customize
+      them.
+  - delay: 2
+  - say: Who should be able to search for you and view your activities?
+    quick_replies:
+      - text: No one
+        action:
+          flow_set:
+            profile: Followers
+            activities: Only You
+            groups: No One
+            flyby: No One
+            legends: No One
+            zones: Use
+      - text: Just people I know
+        action:
+          flow_set:
+            profile: Followers
+            activities: Followers
+            groups: Followers
+            flyby: No One
+            legends: No One
+            zones: Use
+      - text: Any Strava user
+        action:
+          flow_set:
+            profile: Everyone
+            activities: Everyone
+            groups: Everyone
+            flyby: Everyone
+            legends: Everyone
+            zones: Use
+
+  - if: (@ flow.activities in ["Followers", "Only You"] )
+    then: next
+    else:
+      jump: privacy zones
+
+  - say: >
+      Cool. Just a heads up, though, that if your privacy settings are too restrictive
+      you won't be able to participate in segment and challenge leaderboards.
+  - delay: 3
+  - say: Do you want to participate in leaderboards?
+    quick_replies:
+      - text: Yes
+        action:
+          flow_set:
+            activities: Everyone
+      - text: No
+        action:
+          jump: privacy zones
+
+  - (privacy zones)
+  - say: Got it 👍
+  - delay: 1
+  - say: Privacy zones prevent data from being recorded within a user-defined radius
+      of a location, such as your home.
+  - delay: 3
+  - say: >
+      If you define privacy zones, you won't be able to compete on segments that overlap
+      with the zones. This applies to your past activities as well.
+  - delay: 3
+  - say: Do you want to use privacy zones?
+    quick_replies:
+      - text: Yes
+        action:
+          flow_set:
+            zones: Use
+      - text: No
+        action:
+          flow_set:
+            zones: Don't Use
+
+  - tiles:
+      - title: Recommended privacy settings
+        rows:
+          -   - cell: Profile Page
+                value: (@ flow.profile )
+              - cell: Activities
+                value: (@ flow.activities )
+          -   - cell: Group Activities
+                value: (@ flow.groups )
+              - cell: Flyby
+                value: (@ flow.flyby )
+          -   - cell: Local Legends
+                value: (@ flow.legends )
+              - cell: Privacy Zones
+                value: (@ flow.zones )
+    ask: 'Based on your preferences, here are the privacy settings I recommend:'
+  - delay: 2
+  - say: Would you like me to update your privacy settings for you?
+    quick_replies:
+      - text: Yes, update my privacy settings
+        action:
+          jump: end
+      - text: No, I'll do it later
+        action:
+          jump: end
+      - text: Read more about privacy
+        action: next
+
+  - type: meya.zendesk.help_center.component.search
+    integration: integration.zendesk.help_center
+    query: privacy
+    category: 1500001581521
+    section: 1500002189941
+  - type: meya.zendesk.help_center.component.display
+    search_response: (@ flow.result )
+  - tiles: (@ flow.result)
+    button_style: text
+  - end
+
+  - (end)
+  - say: Okay!

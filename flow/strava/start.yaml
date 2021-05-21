@@ -1,0 +1,19 @@
+triggers:
+  - keyword: start strava
+
+steps:
+  - say: >
+      (% if flow.get("message") %)
+        (@ flow.message )
+      (% else %)
+        Hi, (@ user.name | default("my friend"))!
+      (% endif %)
+    quick_replies:
+      - text: Connect a device
+        action:
+          flow: flow.strava.connect_device
+          transfer: true
+      - text: Privacy settings
+        action:
+          flow: flow.strava.privacy
+          transfer: true

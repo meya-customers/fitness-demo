@@ -1,0 +1,13 @@
+triggers:
+  - type: page_open
+  - keyword: start
+
+steps:
+  - value: (@ flow.context.demo )
+    match:
+      strava:
+        flow: flow.strava.start
+        transfer: true
+    default: next
+
+  - say: Hey, welcome!

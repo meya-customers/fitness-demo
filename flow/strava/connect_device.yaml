@@ -1,0 +1,18 @@
+triggers:
+  - button_id: _connect_device_cta
+
+steps:
+  - open_chat
+  - say: Alright, let's get connected! What kind of device do you want to set up?
+    quick_replies:
+      - text: Garmin
+        action: end
+      - text: Zwift
+        result: zwift
+      - text: Wahoo
+        result: wahoo
+      - text: Apple Watch
+        action: end
+      - text: Peloton
+        action: end
+  - flow: flow.strava.device.(@ flow.result )

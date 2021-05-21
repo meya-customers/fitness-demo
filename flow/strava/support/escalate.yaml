@@ -1,0 +1,23 @@
+triggers:
+  - keyword: escalate
+
+steps:
+  - type: meya.user.component.try_reverse_lookup
+    integration: integration.orb
+  - type: component.strava.auth
+    user_id: (@ flow.result )
+    url: (@ vault.strava.api.url )
+    api_token: (@ vault.strava.api.token )
+  - if: (@ flow.result )
+    then:
+      user_set:
+        name: (@ flow.name )
+        email: (@ flow.email )
+        is_paid: (@ flow.is_paid )
+    else: end
+
+  - if: (@ user.is_paid )
+    then:
+      flow: flow.strava.support.chat.session.start
+    else:
+      flow: flow.strava.support.ticket.create
