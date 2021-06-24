@@ -1696,17 +1696,20 @@ Find and Invite Your Friends
   });
 </script>
 <script type="text/javascript">
+  function randomThreadId() {
+    return Math.floor(Math.random() * 1000).toString();
+}
 window.orbConfig = {
      connectionOptions: {
         gridUrl: "https://grid.meya.ai",
-        appId: "app-158177ece9674aa0aa457d7938f6add0",
+        appId: "app-3b0ba0776c4349ada7fd6cedc617829b",
         integrationId: "integration.orb",
         connect: false,
         pageContext: {
           demo: "strava",
         },
         userId: "2",
-        threadId: "main"
+        threadId: randomThreadId()
     },
     launcher: {
       type: "message",
