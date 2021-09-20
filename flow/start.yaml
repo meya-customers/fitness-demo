@@ -3,7 +3,7 @@ triggers:
   - keyword: start
 
 steps:
-  - value: (@ flow.context.demo )
+  - value: (@ flow.context.get("demo") )
     match:
       strava:
         flow: flow.strava.start
